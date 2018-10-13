@@ -32,7 +32,7 @@ const playAgain = document.querySelector('play-again');
 
 let stars = document.querySelectorAll('.stars');
 
-let sivId; //计时器
+let sivId; //计时器的ID
 let currentClick = 0; //点击次数
 let openCard = []; //临时打开的两个卡片
 let cardMatch = 0; //成功配对次数
@@ -88,8 +88,83 @@ displayCard(cardArray);
  * 主要游戏逻辑
  */
 
+//创建卡片被点击后的事件
+function clickCard() {
+    //创建变量，对比卡片翻开后是否匹配
+    let card1, card2;
+    //创建变量，对比卡片类名
+    let cardName1, cardName2;
+    const cardLi = deck.querySelectorAll('.card');
+    for (let x = 0; x < cardLi.length; x++) {
+        cardLi[x].onclick = function () {
+            if (this.className === 'card') {
+                currentClick++;
+                //开始游戏：计时器开始计时
+                if (currentClick === 1) {
+                    sivId = setInterval(function () {
+                        seconds[0].innerText++;
+                    }, 1000)
+                }
+                //游戏规则：点击超过14则2星
+                if (moves[0].innerText === '14') {
+                    removeStars(stars[0]);
+                    removeStars(stars[1]);
+                    // 游戏规则：超过20下则只得1星（14下以内则3星）
+                } else if (moves[0].innerText === '20') {
+                    removeStars(stars[0]);
+                    removeStars(stars[1])
+                }
+                //临时存放两个对比卡片，将目标加入到正确的类中
+                this.className = 'card show open';
+                //当卡片数量超过两个的时候清空，
+                if (openCard.length === 2) {
+                    openCard = [];
 
-
-
-
-
+                }
+                //步数的算法：点击2下为1步
+                if (currentClick % 2 === 0) {
+                    moves[0].innerText = currentClick / 2;
+                    moves[1].innerText = currentClick / 2;
+                }
+                openCard[(currentClick + 1) % 2] = this.childNodes[0];
+                //将临时存放的两个卡片进行对比
+                if (openCard.length === 2) {
+                    card2 = this;
+                    cardName2 = this.childNodes[0].className.substr(3);
+                    // 当卡片匹配时
+                    if (cardName1 === cardName2) {
+                        card1.className = 'card show match';
+                        card2.className = 'card show match';
+                        cardMatch++;
+                        //当匹配次数=卡片数/2时，游戏结束，停止计时
+                        if (cardMatch === cardArray.length / 2) {
+                            if (sivId) {
+                                clearInterval(sivId);
+                                seconds[1].innerText = seconds[0].innerText;
+                            }
+                            setTimeout(function () {
+                                result.style.top = "30%";
+                            }, 500)
+                        }
+                        // 当卡片不匹配时
+                    } else {
+                        card1.className = 'card show dismatch';
+                        card2.className = 'card show dismatch';
+                        if (this.className.includes('dismatch')) {
+                            let out1 = card1;
+                            let out2 = card2;
+                            setTimeout(function () {
+                                out1.className = 'card';
+                                out2.className = 'card';
+                            }, 1000)
+                        }
+                    }
+                    //创建 变量 Card1
+                } else if (openCard.length === 1) {
+                    card1 = this;
+                    cardName1 = this.childNodes[0].className.substr(3);
+                }
+            }
+        }
+    }
+};
