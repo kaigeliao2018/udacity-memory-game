@@ -41,6 +41,30 @@ resetAll();
 // 点击 restart 重置游戏
 restart[0].onclick = resetAll;
 
+/*
+ *resetAll重置游戏
+ */
+function resetAll() {
+    // 洗牌 
+    shuffle(cardsClassNameArray);
+
+    // 步数重置为0
+    moves.innerText = 0;
+
+    //卡片内子项重置
+    for (var i = 0; i < cards.length; i++) {
+        cards[i].innerHTML = `<i class="fa ${cardsClassNameArray[i]}"></i>`;
+        cards[i].className = "card";
+    }
+    // 点击次数重置为0
+    currentClick = 0;
+    // 成功配对重置为0
+    cardMates = 0;
+
+    // 星星重置为3
+    stars.innerHTML = "<li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li>";
+}
+
 
 /*
  * 显示页面上的卡片
@@ -60,7 +84,6 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
