@@ -58,6 +58,20 @@ function shuffle(array) {
     return array;
 };
 
+// 随机创建卡片元素
+function displayCard(card) {
+    const cardList = shuffle(card);
+    for (let x = 0; x < cardList.length; x++) {
+        let li = document.createElement('li');
+        li.className = 'card';
+        li.innerHTML = `<i class="fa ${cardList[x]}"></i>`;
+        deck.appendChild(li);
+    }
+}
+
+// 调用上面的函数将卡片添加到页面
+displayCard(cardArray);
+
 /*
  * 设置一张卡片的事件监听器。 如果该卡片被点击：
  *  - 显示卡片的符号（将这个功能放在你从这个函数中调用的另一个函数中）
@@ -69,13 +83,13 @@ function shuffle(array) {
  *    + 如果所有卡都匹配，则显示带有最终分数的消息（将这个功能放在你从这个函数中调用的另一个函数中）
  */
 
-// 随机创建卡片元素
-function displayCard(card) {
-    const cardList = shuffle(card);
-    for (let x = 0; x < cardList.length; x++) {
-        let li = document.createElement('li');
-        li.className = 'card';
-        li.innerHTML = `<i class="fa ${cardList[x]}"></i>`;
-        deck.appendChild(li);
-    }
-}
+
+/* 
+ * 主要游戏逻辑
+ */
+
+
+
+
+
+
