@@ -27,8 +27,8 @@ const deck = document.querySelector('.deck');
 const moves = document.querySelectorAll('.moves');
 const seconds = document.querySelectorAll('.seconds');
 const restart = document.querySelector('.restart');
-const result = document.querySelector('result');
-const playAgain = document.querySelector('play-again');
+const result = document.querySelector('.result');
+const playAgain = document.querySelector('.play-again');
 
 let stars = document.querySelectorAll('.stars');
 
@@ -68,9 +68,6 @@ function displayCard(card) {
         deck.appendChild(li);
     }
 };
-
-// 调用函数，将每张卡的 HTML 添加到页面
-displayCard(cardArray);
 
 /*
  * 设置一张卡片的事件监听器。 如果该卡片被点击：
@@ -181,6 +178,7 @@ function removeStars(star) {
 }
 
 //调用函数
+displayCard(cardArray);
 clickCard();
 restartGame(restart);
 
