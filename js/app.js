@@ -21,29 +21,32 @@ var cardsClassNameArray = [
 ];
 
 /* 
- * 获取DOM
+ * 获取指定 DOM
  */
-const moves = document.getElementsByClassName('moves');
-const restart = document.getElementsByClassName('restart');
+const deck = document.querySelector('.deck');
+const moves = document.querySelectorAll('.moves');
+const seconds = document.querySelectorAll('.seconds');
+const restart = document.querySelector('.restart');
+const result = document.querySelector('result');
+const playAgain = document.querySelector('play-again');
 
 let cards = document.getElementsByClassName('card');
 let stars = document.getElementsByClassName('stars');
 
-const deck = document.getElementsByClassName('deck');
-
-const finalShow = document.getElementsByClassName('finalShow');
-
 let currentClick = 0; //点击次数
+let bothCardsIn = []; //卡片比较
 let cardMates = 0; //成功配对
 
-// 重置游戏
-resetAll();
+let currentClick = 0; //计时器
+
+/* 
+ * 重置游戏
+ */
+
 // 点击 restart 重置游戏
+resetAll();
 restart[0].onclick = resetAll;
 
-/*
- *resetAll重置游戏
- */
 function resetAll() {
     // 洗牌 
     shuffle(cardsClassNameArray);
@@ -51,13 +54,15 @@ function resetAll() {
     // 步数重置为0
     moves.innerText = 0;
 
-    //卡片内子项重置
+    //卡片重置
     for (var i = 0; i < cards.length; i++) {
         cards[i].innerHTML = `<i class="fa ${cardsClassNameArray[i]}"></i>`;
         cards[i].className = "card";
     }
     // 点击次数重置为0
     currentClick = 0;
+    // 卡片比较重置为0
+    bothCardsIn = [];
     // 成功配对重置为0
     cardMates = 0;
 
