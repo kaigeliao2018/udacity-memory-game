@@ -1,7 +1,7 @@
 /*
  * 创建一个包含所有卡片的数组
  */
-var cardsClassNameArray = [
+var cardArray = [
     'fa-anchor',
     'fa-anchor',
     'fa-bicycle',
@@ -21,7 +21,7 @@ var cardsClassNameArray = [
 ];
 
 /* 
- * 获取指定 DOM
+ * 获取 DOM
  */
 const deck = document.querySelector('.deck');
 const moves = document.querySelectorAll('.moves');
@@ -30,14 +30,13 @@ const restart = document.querySelector('.restart');
 const result = document.querySelector('result');
 const playAgain = document.querySelector('play-again');
 
-let cards = document.getElementsByClassName('card');
-let stars = document.getElementsByClassName('stars');
+let stars = document.querySelectorAll('.stars');
 
 let currentClick = 0; //点击次数
-let bothCardsIn = []; //卡片比较
-let cardMates = 0; //成功配对
+let openCard = []; //临时打开的两个卡片
+let cardMatch = 0; //成功配对次数
 
-let currentClick = 0; //计时器
+let sivId; //计时器
 
 /* 
  * 重置游戏
