@@ -1,7 +1,24 @@
 /*
  * 创建一个包含所有卡片的数组
  */
-
+var cardsClassNameArray = [
+    'fa-anchor',
+    'fa-anchor',
+    'fa-bicycle',
+    'fa-bicycle',
+    'fa-bolt',
+    'fa-bolt',
+    'fa-bomb',
+    'fa-bomb',
+    'fa-cube',
+    'fa-cube',
+    'fa-diamond',
+    'fa-diamond',
+    'fa-leaf',
+    'fa-leaf',
+    'fa-paper-plane-o',
+    'fa-paper-plane-o'
+];
 
 /*
  * 显示页面上的卡片
