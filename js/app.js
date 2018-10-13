@@ -33,8 +33,13 @@ const deck = document.getElementsByClassName('deck');
 
 const finalShow = document.getElementsByClassName('finalShow');
 
-let currentClick = 0; /* 点击次数 */
-let cardMates = 0; /* 成功配对 */
+let currentClick = 0; //点击次数
+let cardMates = 0; //成功配对
+
+// 重置游戏
+resetAll();
+// 点击 restart 重置游戏
+restart[0].onclick = resetAll;
 
 
 /*
