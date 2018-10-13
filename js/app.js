@@ -32,43 +32,10 @@ const playAgain = document.querySelector('play-again');
 
 let stars = document.querySelectorAll('.stars');
 
+let sivId; //计时器
 let currentClick = 0; //点击次数
 let openCard = []; //临时打开的两个卡片
 let cardMatch = 0; //成功配对次数
-
-let sivId; //计时器
-
-/* 
- * 重置游戏
- */
-
-// 点击 restart 重置游戏
-resetAll();
-restart[0].onclick = resetAll;
-
-function resetAll() {
-    // 洗牌 
-    shuffle(cardsClassNameArray);
-
-    // 步数重置为0
-    moves.innerText = 0;
-
-    //卡片重置
-    for (var i = 0; i < cards.length; i++) {
-        cards[i].innerHTML = `<i class="fa ${cardsClassNameArray[i]}"></i>`;
-        cards[i].className = "card";
-    }
-    // 点击次数重置为0
-    currentClick = 0;
-    // 卡片比较重置为0
-    bothCardsIn = [];
-    // 成功配对重置为0
-    cardMates = 0;
-
-    // 星星重置为3
-    stars.innerHTML = "<li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li><li><i class='fa fa-star'></i></li>";
-}
-
 
 /*
  * 显示页面上的卡片
@@ -89,8 +56,7 @@ function shuffle(array) {
         array[randomIndex] = temporaryValue;
     }
     return array;
-}
-
+};
 
 /*
  * 设置一张卡片的事件监听器。 如果该卡片被点击：
@@ -102,3 +68,14 @@ function shuffle(array) {
  *    + 增加移动计数器并将其显示在页面上（将这个功能放在你从这个函数中调用的另一个函数中）
  *    + 如果所有卡都匹配，则显示带有最终分数的消息（将这个功能放在你从这个函数中调用的另一个函数中）
  */
+
+// 随机创建卡片元素
+function displayCard(card) {
+    const cardList = shuffle(card);
+    for (let x = 0; x < cardList.length; x++) {
+        let li = document.createElement('li');
+        li.className = 'card';
+        li.innerHTML = `<i class="fa ${cardList[x]}"></i>`;
+        deck.appendChild(li);
+    }
+}
