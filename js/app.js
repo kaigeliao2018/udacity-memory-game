@@ -20,6 +20,23 @@ var cardsClassNameArray = [
     'fa-paper-plane-o'
 ];
 
+/* 
+ * 获取DOM
+ */
+const moves = document.getElementsByClassName('moves');
+const restart = document.getElementsByClassName('restart');
+
+let cards = document.getElementsByClassName('card');
+let stars = document.getElementsByClassName('stars');
+
+const deck = document.getElementsByClassName('deck');
+
+const finalShow = document.getElementsByClassName('finalShow');
+
+let currentClick = 0; /* 点击次数 */
+let cardMates = 0; /* 成功配对 */
+
+
 /*
  * 显示页面上的卡片
  *   - 使用下面提供的 "shuffle" 方法对数组中的卡片进行洗牌
