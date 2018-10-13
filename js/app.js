@@ -67,9 +67,9 @@ function displayCard(card) {
         li.innerHTML = `<i class="fa ${cardList[x]}"></i>`;
         deck.appendChild(li);
     }
-}
+};
 
-// 调用上面的函数将卡片添加到页面
+// 调用函数，将每张卡的 HTML 添加到页面
 displayCard(cardArray);
 
 /*
@@ -167,4 +167,27 @@ function clickCard() {
             }
         }
     }
+};
+
+//重置游戏
+function restartGame(button) {
+    button.onclick = function () {
+        location.reload();
+    }
+}
+//移除星星
+function removeStars(star) {
+    star.removeChild(star.childNodes[0]);
+}
+
+//调用函数
+clickCard();
+restartGame(restart);
+
+// 游戏结束后弹窗
+playAgain.onclick = function () {
+    location.reload();
+    setTimeout(function () {
+        result.style.top = "-2000px";
+    }, 1000)
 };
